@@ -1,0 +1,7 @@
+[project]
+name = "network"
+aliases = ["gway-network"]
+
+[adapter]
+type = "python"
+module = "gway_network.commands"
