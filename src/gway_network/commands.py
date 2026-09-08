@@ -44,20 +44,36 @@ def _carrier(interface: str) -> int:
     return int(value == "1")
 
 
+def ip(interface: str) -> str:
+    """Return the primary IPv4 address for an interface, or '-' when absent."""
+    if not _carrier(interface):
+        return "-"
+    return _ipv4(interface)
+
+
+def carrier(interface: str) -> int:
+    """Return 1 when an interface has carrier, otherwise 0."""
+    return _carrier(interface)
+
+
 def wlan0_ip() -> str:
-    return _ipv4("wlan0")
+    """Zero-argument compatibility alias for GWAY-backed Sigils."""
+    return ip("wlan0")
 
 
 def eth0_ip() -> str:
-    return _ipv4("eth0") if _carrier("eth0") else "-"
+    """Zero-argument compatibility alias for GWAY-backed Sigils."""
+    return ip("eth0")
 
 
 def wlan0_carrier() -> int:
-    return _carrier("wlan0")
+    """Zero-argument compatibility alias for GWAY-backed Sigils."""
+    return carrier("wlan0")
 
 
 def eth0_carrier() -> int:
-    return _carrier("eth0")
+    """Zero-argument compatibility alias for GWAY-backed Sigils."""
+    return carrier("eth0")
 
 
 def _default_route() -> dict[str, object]:
