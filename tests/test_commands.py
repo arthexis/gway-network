@@ -10,7 +10,9 @@ def test_ip_returns_dash_without_carrier(monkeypatch):
 
 def test_ip_returns_primary_ipv4(monkeypatch):
     monkeypatch.setattr(commands, "_carrier", lambda _interface: 1)
-    monkeypatch.setattr(commands, "_ipv4", lambda interface: "10.42.0.1" if interface == "wlan0" else "-")
+    monkeypatch.setattr(
+        commands, "_ipv4", lambda interface: "10.42.0.1" if interface == "wlan0" else "-"
+    )
     assert commands.ip("wlan0") == "10.42.0.1"
 
 
